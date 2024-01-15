@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myList{
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="parent">
+        <h1>My List</h1>
+        <ul id="myList">
+            <li class="item" id="item1">Lorem ipsum dolor sit amet.</li>
+            <li class="item">Earum ullam maxime vero inventore.</li>
+            <li class="item" id="item2">Eum voluptatum magni nostrum. Dolorem.</li>
+            <li class="item">Rerum beatae distinctio ab sapiente.</li>
+        </ul>
+        <button id="addItem">Add New Item</button>
+    </div>
+    <script>
+        
+        //  কোন একটা event চাইল্ড ইলিমেন্ট এ দিলে তা পেরেন্ট ইলিমেন্ট এ ও কাজ করে, তারপর
+        // চাইল্ড  ইলিমেন্ট এ মাউস দিয়ে ক্লিক করলে চাইল্ড ইলিমেন্ট এক্সিকিউট হওয়ার পাশাপাশি পেরেন্ট ইলিমেন্ট অ
+        // এক্সিকিউট হয়ে যায়। এটাকে বলে bubble event. 
+        // এই বাবল ইভেন্ট স্টপ করার জন্য ব্যবহার করা হয়। event.stopPropagation() and  
+        // event.stopImmediatePropagation 
+        
+        //Single item remove from list.
+        // var items = document.getElementsByClassName('item');
+        // for(let i=0; i<items.length; i++){
+        //     var item = items[i];
+        //     item.addEventListener('click',function(event){
+        //         // console.log(event.target.parentNode);
+        //         event.target.parentNode.removeChild(event.target);
+        //         //event.target এর কারণে মাউস দিয়ে যে আইটেমের উপর ক্লিক করব তা সিলেক্ট হয়ে যাবে
+        //         // এবং removeChild এর ভিতর event.target দেওয়ার কারণে সিলেক্টকৃত আইটেম রিমোভ হয়ে যাবে।
+        //     })
+        // }
+        
+        
+        // Single Item remove from list
+        // var items = document.getElementsByClassName('item')
+        // for(let i = 0; i< items.length; i++){
+        //     var item = items[i];
+        //     item.addEventListener('click', function(event){
+        //         event.target.parentNode.removeChild(event.target);
+        //     })
+        // }
+        
+        //New Single Item add kora
+        // document.getElementById('addItem').addEventListener('click',function(){
+        //     var parentItem = document.getElementById('myList')
+        //     var newItem = document.createElement('li');
+        //     newItem.innerHTML = 'Brand New Item';
+        //     parentItem.appendChild(newItem);
+        // })
+        // Adding single Item
+        document.getElementById('addItem').addEventListener('click', function(){
+            var parentItem = document.getElementById('myList');
+            var newItem = document.createElement('li');
+            newItem.innerHTML = 'Brand New Item';
+            parentItem.appendChild(newItem);
+        })
+        
+        // নতুন ‍এড করা আইটেমগুলো উপরের ফরলুপ দিয়ে ফাংশনের মাধ্যমে রিমোম হচ্ছে না কারণ
+        // যে আইটেমগুলো রিমোম করার জন্য ইভেন্টলিসেনার এড করা হইছে তার অনেক পরে নতুন আইটেম
+        // এড করা হচ্ছে এবং নতুন আইটেমগুলো ইভেন্ট লিসেনার এড করা হয় নাই তাই রিমোভ ফাংশন ঐ লিষ্ট এর উপর কাজ করছে না।
+        // নতুন এড করা আইটেমগুলোকে ও রিমোভ করার জন্য পেরেন্ট ইলিমেন্টকে ধরে ইভেন্টলিসেনার করলে
+        // আগের এবং নতুন এড করা লিষ্টগুলোকেও রিমোভ করা যাবে।
+                // document.getElementById('item1').addEventListener('click',function(){
+        //     console.log('You clicked me on first li');
+        //     event.stopPropagation()
+        // })
+            document.getElementById('myList').addEventListener('click', function(event){
+            //    console.log(this,event.target.parentNode);
+                event.target.parentNode.removeChild(event.target);
+            })
+
+        // document.getElementById('parent').addEventListener('click', function(){
+        //     console.log('I am parent element be careful');
+        //     event.stopPropagation();
+        // })
+
+    </script>
+</body>
+</html>

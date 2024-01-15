@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Exploring addEventListener</h1>
+    <button id="btn-1" style="margin:20px">button-1</button>
+    <button id="btn-2" style="margin:20px">button-2</button>
+    <button id="btn-3" style="margin:20px">button-3</button>
+    <script>
+        //Three Mechanism for addEventListener
+        function buttonOne(){
+            document.body.style.backgroundColor = 'tomato';
+        }
+        const forButtonOne = document.getElementById('btn-1')
+        forButtonOne.onclick = buttonOne;
+        //2nd Mechanism
+        function buttonTwoColor(){
+            document.body.style.backgroundColor = 'lightblue';
+        }
+        const buttonTwo = document.getElementById('btn-2');
+        buttonTwo.addEventListener('click', buttonTwoColor);
+        //3rd Mechanism
+        document.getElementById('btn-3').addEventListener('click',function(){
+            document.body.style.backgroundColor = 'yellow';
+        })
+
+        document.getElementById('btn-3').addEventListener('click', function(){
+            document.body.style.backgroundColor = 'yellow';
+        })
+       
+    </script>
+</body>
+</html>
